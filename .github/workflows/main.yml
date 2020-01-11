@@ -1,0 +1,27 @@
+name: Hello world
+
+on: [push]
+
+jobs:
+  build:
+
+    name: Greeting
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Run a one-line script
+      run: echo Hello, world!
+    - name: Run a multi-line script
+      run: |
+        echo Add other actions to build,
+        echo test, and deploy your project.
+    - name: Hello world
+      uses: actions/hello-world-javascript-action@v1
+      with:
+        who-to-greet: 'Mona the Octocat'
+      id: hello
+    # This step prints an output (time) from the previous step's action.
+    - name: Echo the greeting's time
+      run: echo 'The time was ${{ steps.hello.outputs.time }}.'
