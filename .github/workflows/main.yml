@@ -10,6 +10,13 @@ jobs:
 
     steps:
       - uses: actions/checkout@v1
+      - name: Use Node.js 12
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+
+      - name: Touch file
+        run: touch blah.json
 
       - name: Hello world
         uses: ./actions/hello-world
@@ -20,10 +27,6 @@ jobs:
       - name: Echo the greeting's time
         run: echo 'The time was ${{ steps.hello.outputs.time }}.'
 
-      - name: Use Node.js 12
-        uses: actions/setup-node@v1
-        with:
-          node-version: 12
       - run: ls
       - run: yarn
       - run: yarn build
