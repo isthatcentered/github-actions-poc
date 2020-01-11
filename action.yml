@@ -1,0 +1,12 @@
+name: Hello world
+description: Greet a person even she doesn't want to be
+inputs:
+  person:
+    description: Name of the person
+    required: true
+outputs:
+  time:
+    description: The time the person was greeted at
+runs:
+  using: node12
+  main: dist/index.js
