@@ -1,5 +1,5 @@
 import log from "@isthatcentered/log";
-import core from "@actions/core";
+const core = require("@actions/core");
 
 try {
   // Inputs defined in ../action.yml metadata file
