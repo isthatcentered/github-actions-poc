@@ -2507,7 +2507,9 @@ module.exports = /******/ (function(modules, runtime) {
       Object.defineProperty(exports, "__esModule", { value: true });
       var core = __importStar(__webpack_require__(852));
       var deploy_to_ftp_1 = __importDefault(__webpack_require__(433));
-      var log_1 = __importDefault(__webpack_require__(212));
+      var castBooleanString = function(boolean) {
+        return /true/i.test(boolean);
+      };
       var run = function() {
         return __awaiter(void 0, void 0, void 0, function() {
           var config, error_1;
@@ -2522,7 +2524,9 @@ module.exports = /******/ (function(modules, runtime) {
                   host: core.getInput("host"),
                   path: core.getInput("path"),
                   into: core.getInput("into"),
-                  cleanupExisting: false
+                  cleanupExisting: castBooleanString(
+                    core.getInput("cleanupExisting")
+                  )
                 };
                 core.info(
                   "Deploying " +
@@ -2531,9 +2535,6 @@ module.exports = /******/ (function(modules, runtime) {
                     config.host +
                     "/" +
                     config.into
-                );
-                log_1.default("cleanupExisting")(
-                  typeof core.getInput("cleanupExisting")
                 );
                 return [
                   4 /*yield*/,
@@ -3072,21 +3073,6 @@ module.exports = /******/ (function(modules, runtime) {
 
         return PassThroughHandlerContext;
       };
-
-      /***/
-    },
-
-    /***/ 212: /***/ function(__unusedmodule, exports) {
-      "use strict";
-
-      Object.defineProperty(exports, "__esModule", { value: true });
-      var log = function(tag) {
-        return function(thing) {
-          console.log("\uD83D\uDC49 [" + tag + "]", thing, "\uD83D\uDC48");
-          return thing;
-        };
-      };
-      exports.default = log;
 
       /***/
     },
