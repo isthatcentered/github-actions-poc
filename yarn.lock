@@ -46,6 +46,13 @@
     readable-stream "1.1.x"
     xregexp "2.0.0"
 
+"@isthatcentered/deploy-to-ftp@^1.0.3-alpha.0":
+  version "1.0.3-alpha.0"
+  resolved "https://registry.yarnpkg.com/@isthatcentered/deploy-to-ftp/-/deploy-to-ftp-1.0.3-alpha.0.tgz#ba86c8467101a802e3822f292c4cdace1dd2a293"
+  integrity sha512-jw3DgfbQalnZU0pEDeOSURmyMewZ4NZA/n0MqCC07PJFgNIaYvrqn6r5C687TrAt6LPwxK5/QljjDjJevApvZg==
+  dependencies:
+    ftp-deploy "^2.3.6"
+
 "@isthatcentered/log@^1.0.3-alpha.0":
   version "1.0.3-alpha.0"
   resolved "https://registry.yarnpkg.com/@isthatcentered/log/-/log-1.0.3-alpha.0.tgz#6c29c04990e01e589691b1f28e20d96a873af985"

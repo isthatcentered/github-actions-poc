@@ -22,6 +22,10 @@ inputs:
   into:
     description: Where to place the files in your ftp
     required: true
+  cleanupExisting:
+    required: false
+    default: false
+    description: Remove existing file inside FTP destination folder
 
 runs:
   using: node12

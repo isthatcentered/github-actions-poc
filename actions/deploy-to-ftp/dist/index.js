@@ -2506,7 +2506,8 @@ module.exports = /******/ (function(modules, runtime) {
         };
       Object.defineProperty(exports, "__esModule", { value: true });
       var core = __importStar(__webpack_require__(852));
-      var deploy_to_ftp_1 = __importDefault(__webpack_require__(972));
+      var deploy_to_ftp_1 = __importDefault(__webpack_require__(433));
+      var log_1 = __importDefault(__webpack_require__(212));
       var run = function() {
         return __awaiter(void 0, void 0, void 0, function() {
           var config, error_1;
@@ -2520,7 +2521,8 @@ module.exports = /******/ (function(modules, runtime) {
                   port: core.getInput("port"),
                   host: core.getInput("host"),
                   path: core.getInput("path"),
-                  into: core.getInput("into")
+                  into: core.getInput("into"),
+                  cleanupExisting: false
                 };
                 core.info(
                   "Deploying " +
@@ -2529,6 +2531,9 @@ module.exports = /******/ (function(modules, runtime) {
                     config.host +
                     "/" +
                     config.into
+                );
+                log_1.default("cleanupExisting")(
+                  typeof core.getInput("cleanupExisting")
                 );
                 return [
                   4 /*yield*/,
@@ -3067,6 +3072,21 @@ module.exports = /******/ (function(modules, runtime) {
 
         return PassThroughHandlerContext;
       };
+
+      /***/
+    },
+
+    /***/ 212: /***/ function(__unusedmodule, exports) {
+      "use strict";
+
+      Object.defineProperty(exports, "__esModule", { value: true });
+      var log = function(tag) {
+        return function(thing) {
+          console.log("\uD83D\uDC49 [" + tag + "]", thing, "\uD83D\uDC48");
+          return thing;
+        };
+      };
+      exports.default = log;
 
       /***/
     },
@@ -8160,6 +8180,58 @@ module.exports = /******/ (function(modules, runtime) {
 
       module.exports = new Async();
       module.exports.firstLineError = firstLineError;
+
+      /***/
+    },
+
+    /***/ 433: /***/ function(module, __unusedexports, __webpack_require__) {
+      "use strict";
+
+      function _interopDefault(ex) {
+        return ex && typeof ex === "object" && "default" in ex
+          ? ex["default"]
+          : ex;
+      }
+
+      var FtpDeploy = _interopDefault(__webpack_require__(988));
+
+      const failure = error => ({
+        type: "failure",
+        error
+      });
+      const success = report => ({
+        type: "success",
+        report
+      });
+      const deployToFTP = folder => config => {
+        const ftpDeploy = new FtpDeploy();
+        return ftpDeploy
+          .deploy({
+            user: config.user,
+            password: config.password,
+            host: config.host,
+            port: config.port,
+            // What files to upload
+            localRoot: folder,
+            // Where to place uploaded files on FTP
+            remoteRoot: config.into,
+            include: ["**/*", "*"],
+            // exclude: [
+            //   "dist/**/*.map",
+            //   "node_modules/**",
+            //   "node_modules/**/.*",
+            //   ".git/**"
+            // ],
+            // delete ALL existing files at destination before uploading, if true
+            deleteRemote: config.cleanupExisting,
+            // Passive mode is forced (EPSV command is not sent)
+            forcePasv: true
+          })
+          .then(success)
+          .catch(failure);
+      };
+
+      module.exports = deployToFTP;
 
       /***/
     },
@@ -20996,48 +21068,6 @@ module.exports = /******/ (function(modules, runtime) {
           return this;
         };
       };
-
-      /***/
-    },
-
-    /***/ 972: /***/ function(__unusedmodule, exports, __webpack_require__) {
-      "use strict";
-
-      var __importDefault =
-        (this && this.__importDefault) ||
-        function(mod) {
-          return mod && mod.__esModule ? mod : { default: mod };
-        };
-      Object.defineProperty(exports, "__esModule", { value: true });
-      var ftp_deploy_1 = __importDefault(__webpack_require__(988));
-      var deployToFtp = function(folder) {
-        return function(config) {
-          var ftpDeploy = new ftp_deploy_1.default();
-          return ftpDeploy.deploy({
-            user: config.user,
-            // Password optional, prompted if none given
-            password: config.password,
-            host: config.host,
-            port: config.port,
-            localRoot: folder,
-            // Where the files should be placed
-            remoteRoot: config.into,
-            // include: ["*", "**/*"],      // this would upload everything except dot files
-            include: ["**/*", "*"],
-            // exclude: [
-            //   "dist/**/*.map",
-            //   "node_modules/**",
-            //   "node_modules/**/.*",
-            //   ".git/**"
-            // ],
-            // delete ALL existing files at destination before uploading, if true
-            deleteRemote: false,
-            // Passive mode is forced (EPSV command is not sent)
-            forcePasv: true
-          });
-        };
-      };
-      exports.default = deployToFtp;
 
       /***/
     },

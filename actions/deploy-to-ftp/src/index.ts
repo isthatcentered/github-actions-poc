@@ -1,5 +1,6 @@
 import * as core from "@actions/core";
-import deployToFtp from "./deploy-to-ftp";
+import deployToFtp from "@isthatcentered/deploy-to-ftp";
+import log from "@isthatcentered/log";
 
 const run = async (): Promise<void> => {
   try {
@@ -10,10 +11,13 @@ const run = async (): Promise<void> => {
       port: core.getInput("port"),
       host: core.getInput("host"),
       path: core.getInput("path"),
-      into: core.getInput("into")
+      into: core.getInput("into"),
+      cleanupExisting: false
     };
 
     core.info(`Deploying ${config.path} to ${config.host}/${config.into}`);
+
+    log("cleanupExisting")(typeof core.getInput("cleanupExisting"));
 
     await deployToFtp(config.path)(config);
 
