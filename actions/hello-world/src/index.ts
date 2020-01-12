@@ -1,7 +1,7 @@
 import log from "@isthatcentered/log";
 
-const core = require("@actions/core");
-const github = require("@actions/github");
+import core from "@actions/core";
+import github from "@actions/github";
 
 try {
   // `person` input defined in action metadata file

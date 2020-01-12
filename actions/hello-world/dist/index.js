@@ -35,10 +35,9 @@ module.exports = /******/ (function(modules, runtime) {
   /******/
   /******/ /******/ function startup() {
     /******/ // Load entry module and return exports
-    /******/ return __webpack_require__(190);
+    /******/ return __webpack_require__(178);
     /******/
-  } // initialize runtime
-  /******/ /******/ runtime(__webpack_require__); // run startup
+  } // run startup
   /******/
   /******/ /******/ return startup();
   /******/
@@ -785,6 +784,39 @@ module.exports = /******/ (function(modules, runtime) {
       /***/
     },
 
+    /***/ 178: /***/ function(__unusedmodule, exports, __webpack_require__) {
+      "use strict";
+
+      var __importDefault =
+        (this && this.__importDefault) ||
+        function(mod) {
+          return mod && mod.__esModule ? mod : { default: mod };
+        };
+      Object.defineProperty(exports, "__esModule", { value: true });
+      var log_1 = __importDefault(__webpack_require__(212));
+      var core_1 = __importDefault(__webpack_require__(852));
+      var github_1 = __importDefault(__webpack_require__(983));
+      try {
+        // `person` input defined in action metadata file
+        var nameToGreet = core_1.default.getInput("person");
+        console.log("Hello " + nameToGreet + "!");
+        var time = new Date().toTimeString();
+        core_1.default.setOutput("time", time);
+        // Get the JSON webhook payload for the event that triggered the workflow
+        var payload = JSON.stringify(
+          github_1.default.context.payload,
+          undefined,
+          2
+        );
+        log_1.default("Event payload")(payload);
+        log_1.default("Github Context")(github_1.default.context);
+      } catch (error) {
+        core_1.default.setFailed(error.message);
+      }
+
+      /***/
+    },
+
     /***/ 179: /***/ function(module, __unusedexports, __webpack_require__) {
       module.exports = authenticationBeforeRequest;
 
@@ -879,44 +911,6 @@ module.exports = /******/ (function(modules, runtime) {
           (mod & ug && myUid === 0);
 
         return ret;
-      }
-
-      /***/
-    },
-
-    /***/ 190: /***/ function(
-      __unusedmodule,
-      __webpack_exports__,
-      __webpack_require__
-    ) {
-      "use strict";
-      __webpack_require__.r(__webpack_exports__);
-      /* harmony import */ var _isthatcentered_log__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
-        212
-      );
-      /* harmony import */ var _isthatcentered_log__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/ __webpack_require__.n(
-        _isthatcentered_log__WEBPACK_IMPORTED_MODULE_0__
-      );
-
-      const core = __webpack_require__(852);
-      const github = __webpack_require__(983);
-
-      try {
-        // `person` input defined in action metadata file
-        const nameToGreet = core.getInput("person");
-        console.log(`Hello ${nameToGreet}!`);
-        const time = new Date().toTimeString();
-        core.setOutput("time", time);
-        // Get the JSON webhook payload for the event that triggered the workflow
-        const payload = JSON.stringify(github.context.payload, undefined, 2);
-        _isthatcentered_log__WEBPACK_IMPORTED_MODULE_0___default()(
-          `Event payload`
-        )(payload);
-        _isthatcentered_log__WEBPACK_IMPORTED_MODULE_0___default()(
-          "Github Context"
-        )(github.context);
-      } catch (error) {
-        core.setFailed(error.message);
       }
 
       /***/
@@ -17967,64 +17961,6 @@ module.exports = /******/ (function(modules, runtime) {
       /***/
     }
 
-    /******/
-  },
-  /******/ function(__webpack_require__) {
-    // webpackRuntimeModules
-    /******/ "use strict" /* webpack/runtime/make namespace object */;
-    /******/
-
-    /******/ /******/ !(function() {
-      /******/ // define __esModule on exports
-      /******/ __webpack_require__.r = function(exports) {
-        /******/ if (typeof Symbol !== "undefined" && Symbol.toStringTag) {
-          /******/ Object.defineProperty(exports, Symbol.toStringTag, {
-            value: "Module"
-          });
-          /******/
-        }
-        /******/ Object.defineProperty(exports, "__esModule", { value: true });
-        /******/
-      };
-      /******/
-    })(); /* webpack/runtime/compat get default export */
-    /******/
-
-    /******/ /******/ !(function() {
-      /******/ // getDefaultExport function for compatibility with non-harmony modules
-      /******/ __webpack_require__.n = function(module) {
-        /******/ var getter =
-          module && module.__esModule
-            ? /******/ function getDefault() {
-                return module["default"];
-              }
-            : /******/ function getModuleExports() {
-                return module;
-              };
-        /******/ __webpack_require__.d(getter, "a", getter);
-        /******/ return getter;
-        /******/
-      };
-      /******/
-    })(); /* webpack/runtime/define property getter */
-    /******/
-
-    /******/ /******/ !(function() {
-      /******/ // define getter function for harmony exports
-      /******/ var hasOwnProperty = Object.prototype.hasOwnProperty;
-      /******/ __webpack_require__.d = function(exports, name, getter) {
-        /******/ if (!hasOwnProperty.call(exports, name)) {
-          /******/ Object.defineProperty(exports, name, {
-            enumerable: true,
-            get: getter
-          });
-          /******/
-        }
-        /******/
-      };
-      /******/
-    })();
-    /******/
     /******/
   }
 );

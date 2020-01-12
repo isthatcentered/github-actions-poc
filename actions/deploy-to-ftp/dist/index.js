@@ -35,10 +35,9 @@ module.exports = /******/ (function(modules, runtime) {
   /******/
   /******/ /******/ function startup() {
     /******/ // Load entry module and return exports
-    /******/ return __webpack_require__(190);
+    /******/ return __webpack_require__(178);
     /******/
-  } // initialize runtime
-  /******/ /******/ runtime(__webpack_require__); // run startup
+  } // run startup
   /******/
   /******/ /******/ return startup();
   /******/
@@ -51,51 +50,27 @@ module.exports = /******/ (function(modules, runtime) {
       /***/
     },
 
-    /***/ 190: /***/ function(
-      __unusedmodule,
-      __webpack_exports__,
-      __webpack_require__
-    ) {
+    /***/ 178: /***/ function(__unusedmodule, exports, __webpack_require__) {
       "use strict";
-      __webpack_require__.r(__webpack_exports__);
-      /* harmony import */ var _isthatcentered_log__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
-        212
-      );
-      /* harmony import */ var _isthatcentered_log__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/ __webpack_require__.n(
-        _isthatcentered_log__WEBPACK_IMPORTED_MODULE_0__
-      );
-      /* harmony import */ var _actions_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
-        852
-      );
-      /* harmony import */ var _actions_core__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/ __webpack_require__.n(
-        _actions_core__WEBPACK_IMPORTED_MODULE_1__
-      );
 
+      var __importDefault =
+        (this && this.__importDefault) ||
+        function(mod) {
+          return mod && mod.__esModule ? mod : { default: mod };
+        };
+      Object.defineProperty(exports, "__esModule", { value: true });
+      var log_1 = __importDefault(__webpack_require__(212));
+      var core_1 = __importDefault(__webpack_require__(852));
       try {
         // Inputs defined in ../action.yml metadata file
-        const username = _actions_core__WEBPACK_IMPORTED_MODULE_1___default().getInput(
-            "username"
-          ),
-          password = _actions_core__WEBPACK_IMPORTED_MODULE_1___default().getInput(
-            "password"
-          ),
-          port = _actions_core__WEBPACK_IMPORTED_MODULE_1___default().getInput(
-            "port"
-          ),
-          dist = _actions_core__WEBPACK_IMPORTED_MODULE_1___default().getInput(
-            "dist"
-          ),
-          to = _actions_core__WEBPACK_IMPORTED_MODULE_1___default().getInput(
-            "to"
-          );
-
-        _isthatcentered_log__WEBPACK_IMPORTED_MODULE_0___default()(
-          "Deploying to ftp"
-        )({ port, dist, to });
+        var username = core_1.default.getInput("username"),
+          password = core_1.default.getInput("password"),
+          port = core_1.default.getInput("port"),
+          dist = core_1.default.getInput("dist"),
+          to = core_1.default.getInput("to");
+        log_1.default("Deploying to ftp")({ port: port, dist: dist, to: to });
       } catch (error) {
-        _actions_core__WEBPACK_IMPORTED_MODULE_1___default().setFailed(
-          error.message
-        );
+        core_1.default.setFailed(error.message);
       }
 
       /***/
@@ -429,64 +404,6 @@ module.exports = /******/ (function(modules, runtime) {
       /***/
     }
 
-    /******/
-  },
-  /******/ function(__webpack_require__) {
-    // webpackRuntimeModules
-    /******/ "use strict" /* webpack/runtime/make namespace object */;
-    /******/
-
-    /******/ /******/ !(function() {
-      /******/ // define __esModule on exports
-      /******/ __webpack_require__.r = function(exports) {
-        /******/ if (typeof Symbol !== "undefined" && Symbol.toStringTag) {
-          /******/ Object.defineProperty(exports, Symbol.toStringTag, {
-            value: "Module"
-          });
-          /******/
-        }
-        /******/ Object.defineProperty(exports, "__esModule", { value: true });
-        /******/
-      };
-      /******/
-    })(); /* webpack/runtime/compat get default export */
-    /******/
-
-    /******/ /******/ !(function() {
-      /******/ // getDefaultExport function for compatibility with non-harmony modules
-      /******/ __webpack_require__.n = function(module) {
-        /******/ var getter =
-          module && module.__esModule
-            ? /******/ function getDefault() {
-                return module["default"];
-              }
-            : /******/ function getModuleExports() {
-                return module;
-              };
-        /******/ __webpack_require__.d(getter, "a", getter);
-        /******/ return getter;
-        /******/
-      };
-      /******/
-    })(); /* webpack/runtime/define property getter */
-    /******/
-
-    /******/ /******/ !(function() {
-      /******/ // define getter function for harmony exports
-      /******/ var hasOwnProperty = Object.prototype.hasOwnProperty;
-      /******/ __webpack_require__.d = function(exports, name, getter) {
-        /******/ if (!hasOwnProperty.call(exports, name)) {
-          /******/ Object.defineProperty(exports, name, {
-            enumerable: true,
-            get: getter
-          });
-          /******/
-        }
-        /******/
-      };
-      /******/
-    })();
-    /******/
     /******/
   }
 );

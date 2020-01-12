@@ -2,10 +2,10 @@
   "name": "github-actions-poc",
   "version": "1.0.0",
   "description": "",
-  "main": "actions/hello-world/src/index.js",
+  "main": "actions/hello-world/src/index.ts",
   "scripts": {
-    "build:helloWorld": "cd actions/hello-world && ncc build src/index.js",
-    "build:deployToFtp": "cd actions/deploy-to-ftp && ncc build src/index.js",
+    "build:helloWorld": "cd actions/hello-world && ncc build src/index.ts",
+    "build:deployToFtp": "cd actions/deploy-to-ftp && ncc build src/index.ts",
     "build": "yarn build:helloWorld && yarn build:deployToFtp",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -23,7 +23,8 @@
   "devDependencies": {
     "husky": "^4.0.7",
     "prettier": "^1.19.1",
-    "pretty-quick": "^2.0.1"
+    "pretty-quick": "^2.0.1",
+    "typescript": "^3.7.4"
   },
   "husky": {
     "hooks": {
