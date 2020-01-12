@@ -3,7 +3,7 @@ name: deploy-to-ftp
 description: Deploy a folder to your server via ftp
 
 inputs:
-  username:
+  user:
     required: true
     description: Ftp user
   password:
@@ -13,10 +13,13 @@ inputs:
     description: FTP port
     required: false
     default: "21"
-  dist:
-    description: Path to your dist folder (from root)
+  host:
+    description: FTP host url
     required: true
-  to:
+  path:
+    description: Path to the folder to deploy (from root)
+    required: true
+  into:
     description: Where to place the files in your ftp
     required: true
 

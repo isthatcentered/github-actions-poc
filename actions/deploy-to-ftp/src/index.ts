@@ -1,15 +1,26 @@
-import log from "@isthatcentered/log";
 import * as core from "@actions/core";
+import deployToFtp from "./deploy-to-ftp";
 
-try {
-  // Inputs defined in ../action.yml metadata file
-  const username = core.getInput("username"),
-    password = core.getInput("password"),
-    port = core.getInput("port"),
-    dist = core.getInput("dist"),
-    to = core.getInput("to");
+const run = async (): Promise<void> => {
+  try {
+    // Inputs defined in ../action.yml metadata file
+    const config = {
+      user: core.getInput("user"),
+      password: core.getInput("password"),
+      port: core.getInput("port"),
+      host: core.getInput("host"),
+      path: core.getInput("path"),
+      into: core.getInput("into")
+    };
 
-  log("Deploying to ftp")({ port, dist, to });
-} catch (error) {
-  core.setFailed(error.message);
-}
+    core.info(`Deploying ${config.path} to ${config.host}/${config.into}`);
+
+    await deployToFtp(config.path)(config);
+
+    core.info(`Deploy to ftp successful`);
+  } catch (error) {
+    core.setFailed(error.message);
+  }
+};
+
+run();

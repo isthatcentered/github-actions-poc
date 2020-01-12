@@ -51,12 +51,14 @@ jobs:
           yarn build
 
       - name: Deploy to ftp
+
         uses: ./actions/deploy-to-ftp
         with:
-          username: John
-          password: Rambo
-          dist: .
-          to: web
+          user: ${{ secrets.${{ secrets.FTP_USER }} }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          host: ${{ secrets.FTP_HOST }}
+          path: actions
+          into: web
 
       - name: Echo the greeting's time
         run: echo 'The time was ${{ steps.hello.outputs.time }}.'
