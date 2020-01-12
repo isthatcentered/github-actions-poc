@@ -48,7 +48,6 @@ jobs:
 
       - name: Build
         run: |
-          yarn test
           yarn build
 
       - name: Deploy to ftp
