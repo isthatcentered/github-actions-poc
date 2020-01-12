@@ -47,7 +47,9 @@ jobs:
           CI: true
 
       - name: Build
-        run: yarn build
+        run: |
+          yarn test
+          yarn build
 
       - name: Echo the greeting's time
         run: echo 'The time was ${{ steps.hello.outputs.time }}.'
