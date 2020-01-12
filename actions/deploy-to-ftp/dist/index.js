@@ -2518,12 +2518,12 @@ module.exports = /******/ (function(modules, runtime) {
               case 0:
                 _a.trys.push([0, 2, , 3]);
                 config = {
-                  user: core.getInput("user"),
-                  password: core.getInput("password"),
+                  user: core.getInput("user", { required: true }),
+                  password: core.getInput("password", { required: true }),
                   port: core.getInput("port"),
-                  host: core.getInput("host"),
-                  path: core.getInput("path"),
-                  into: core.getInput("into"),
+                  host: core.getInput("host", { required: true }),
+                  path: core.getInput("path", { required: true }),
+                  into: core.getInput("into", { required: true }),
                   cleanupExisting: castBooleanString(
                     core.getInput("cleanupExisting")
                   )

@@ -24,7 +24,7 @@ inputs:
     required: true
   cleanupExisting:
     required: false
-    default: false
+    default: true
     description: Remove existing file inside FTP destination folder
 
 runs:
