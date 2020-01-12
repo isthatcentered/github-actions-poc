@@ -1,6 +1,7 @@
 import * as core from "@actions/core";
 import deployToFtp from "@isthatcentered/deploy-to-ftp";
-import log from "@isthatcentered/log";
+
+const castBooleanString = (boolean: string) => /true/i.test(boolean);
 
 const run = async (): Promise<void> => {
   try {
@@ -12,12 +13,10 @@ const run = async (): Promise<void> => {
       host: core.getInput("host"),
       path: core.getInput("path"),
       into: core.getInput("into"),
-      cleanupExisting: false
+      cleanupExisting: castBooleanString(core.getInput("cleanupExisting"))
     };
 
     core.info(`Deploying ${config.path} to ${config.host}/${config.into}`);
-
-    log("cleanupExisting")(typeof core.getInput("cleanupExisting"));
 
     await deployToFtp(config.path)(config);
 
