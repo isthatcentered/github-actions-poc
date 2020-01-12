@@ -1,0 +1,25 @@
+name: deploy-to-ftp
+
+description: Deploy a folder to your server via ftp
+
+inputs:
+  username:
+    required: true
+    description: Ftp user
+  password:
+    required: true
+    description: Ftp password
+  port:
+    description: FTP port
+    required: false
+    default: "21"
+  dist:
+    description: Path to your dist folder (from root)
+    required: true
+  to:
+    description: Where to place the files in your ftp
+    required: true
+
+runs:
+  using: node12
+  main: dist/index.js

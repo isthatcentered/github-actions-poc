@@ -4,7 +4,9 @@
   "description": "",
   "main": "actions/hello-world/src/index.js",
   "scripts": {
-    "build": "ncc build actions/hello-world/src/index.js",
+    "build:helloWorld": "cd actions/hello-world && ncc build src/index.js",
+    "build:deployToFtp": "cd actions/deploy-to-ftp && ncc build src/index.js",
+    "build": "yarn build:helloWorld && yarn build:deployToFtp",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -19,7 +21,9 @@
   },
   "homepage": "https://github.com/isthatcentered/github-actions-poc#readme",
   "devDependencies": {
-    "prettier": "^1.19.1"
+    "husky": "^4.0.7",
+    "prettier": "^1.19.1",
+    "pretty-quick": "^2.0.1"
   },
   "husky": {
     "hooks": {
@@ -30,6 +34,7 @@
     "@actions/core": "^1.2.1",
     "@actions/github": "^2.0.1",
     "@isthatcentered/log": "^1.0.3-alpha.0",
-    "@zeit/ncc": "^0.21.0"
+    "@zeit/ncc": "^0.21.0",
+    "ftp-deploy": "^2.3.6"
   }
 }

@@ -51,6 +51,14 @@ jobs:
           yarn test
           yarn build
 
+      - name: Deploy to ftp
+        uses: ./actions/deploy-to-ftp
+        with:
+          username: John
+          password: Rambo
+          dist: .
+          to: web
+
       - name: Echo the greeting's time
         run: echo 'The time was ${{ steps.hello.outputs.time }}.'
 
