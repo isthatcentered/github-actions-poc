@@ -58,19 +58,30 @@ module.exports = /******/ (function(modules, runtime) {
         function(mod) {
           return mod && mod.__esModule ? mod : { default: mod };
         };
+      var __importStar =
+        (this && this.__importStar) ||
+        function(mod) {
+          if (mod && mod.__esModule) return mod;
+          var result = {};
+          if (mod != null)
+            for (var k in mod)
+              if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
+          result["default"] = mod;
+          return result;
+        };
       Object.defineProperty(exports, "__esModule", { value: true });
       var log_1 = __importDefault(__webpack_require__(212));
-      var core_1 = __importDefault(__webpack_require__(852));
+      var core = __importStar(__webpack_require__(852));
       try {
         // Inputs defined in ../action.yml metadata file
-        var username = core_1.default.getInput("username"),
-          password = core_1.default.getInput("password"),
-          port = core_1.default.getInput("port"),
-          dist = core_1.default.getInput("dist"),
-          to = core_1.default.getInput("to");
+        var username = core.getInput("username"),
+          password = core.getInput("password"),
+          port = core.getInput("port"),
+          dist = core.getInput("dist"),
+          to = core.getInput("to");
         log_1.default("Deploying to ftp")({ port: port, dist: dist, to: to });
       } catch (error) {
-        core_1.default.setFailed(error.message);
+        core.setFailed(error.message);
       }
 
       /***/

@@ -792,26 +792,33 @@ module.exports = /******/ (function(modules, runtime) {
         function(mod) {
           return mod && mod.__esModule ? mod : { default: mod };
         };
+      var __importStar =
+        (this && this.__importStar) ||
+        function(mod) {
+          if (mod && mod.__esModule) return mod;
+          var result = {};
+          if (mod != null)
+            for (var k in mod)
+              if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
+          result["default"] = mod;
+          return result;
+        };
       Object.defineProperty(exports, "__esModule", { value: true });
       var log_1 = __importDefault(__webpack_require__(212));
-      var core_1 = __importDefault(__webpack_require__(852));
-      var github_1 = __importDefault(__webpack_require__(983));
+      var core = __importStar(__webpack_require__(852));
+      var github = __importStar(__webpack_require__(983));
       try {
         // `person` input defined in action metadata file
-        var nameToGreet = core_1.default.getInput("person");
+        var nameToGreet = core.getInput("person");
         console.log("Hello " + nameToGreet + "!");
         var time = new Date().toTimeString();
-        core_1.default.setOutput("time", time);
+        core.setOutput("time", time);
         // Get the JSON webhook payload for the event that triggered the workflow
-        var payload = JSON.stringify(
-          github_1.default.context.payload,
-          undefined,
-          2
-        );
+        var payload = JSON.stringify(github.context.payload, undefined, 2);
         log_1.default("Event payload")(payload);
-        log_1.default("Github Context")(github_1.default.context);
+        log_1.default("Github Context")(github.context);
       } catch (error) {
-        core_1.default.setFailed(error.message);
+        core.setFailed(error.message);
       }
 
       /***/

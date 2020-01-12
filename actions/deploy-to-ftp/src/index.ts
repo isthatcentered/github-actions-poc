@@ -1,5 +1,5 @@
 import log from "@isthatcentered/log";
-import core from "@actions/core";
+import * as core from "@actions/core";
 
 try {
   // Inputs defined in ../action.yml metadata file

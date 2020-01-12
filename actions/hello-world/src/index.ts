@@ -1,7 +1,7 @@
 import log from "@isthatcentered/log";
 
-import core from "@actions/core";
-import github from "@actions/github";
+import * as core from "@actions/core";
+import * as github from "@actions/github";
 
 try {
   // `person` input defined in action metadata file
