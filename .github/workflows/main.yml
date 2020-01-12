@@ -54,7 +54,7 @@ jobs:
 
         uses: ./actions/deploy-to-ftp
         with:
-          user: ${{ secrets.${{ secrets.FTP_USER }} }}
+          user: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASSWORD }}
           host: ${{ secrets.FTP_HOST }}
           path: actions
