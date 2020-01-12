@@ -27,7 +27,13 @@ jobs:
             ${{ runner.os }}-yarn-
 
       - name: Touch file
-        run: touch blah.json
+        run: node create-random-json.js
+
+      - name: Updload artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: my-artifact
+          path: blah.json
 
       - name: Hello world
         uses: ./actions/hello-world
