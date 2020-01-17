@@ -18,6 +18,8 @@ jobs:
         with:
           name: dist # Upload artifact with name `dist`
           path: actions # Upload content of `dist` folder 
+      - name: Debug Files
+        run: ls
   deploy:
     name: Deploy App
     runs-on: [ubuntu-latest]
@@ -27,18 +29,16 @@ jobs:
         uses: actions/download-artifact@master
         with:
           name: dist # Download artifact named `dist` (matches build step: Upload bundle)
-#          path: dist # Optional, downloads to current working directory if not specified
-      - name: Debug
+          path: dist # Optional, downloads to current working directory under folder {artifact_name} if not specified
+      - name: Debug Files
         run: ls
-      - name: Debug
-        run: ls dist
       - name: Upload to FTP        
         uses: isthatcentered/dist-to-ftp@master
         with:
           user: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASSWORD }}
           host: ${{ secrets.FTP_HOST }}
-          path: actions
+          path: dist
           into: web
           cleanupExisting: true
 
