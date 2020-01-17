@@ -35,6 +35,15 @@ jobs:
           name: my-artifact
           path: blah.json
 
+      - name: Use artifact
+        uses: actions/download-artifact@v1
+        with:
+          name: my-artifact
+          path: downloaded/
+
+      - name: List artifact 
+        run: ls downloaded
+
       - name: Hello world
         uses: ./actions/hello-world
         with:
@@ -52,14 +61,14 @@ jobs:
 
       - name: Deploy to ftp
 
-        uses: ./actions/deploy-to-ftp
+        uses: isthatcentered/deploy-to-ftp@master
         with:
           user: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASSWORD }}
           host: ${{ secrets.FTP_HOST }}
           path: actions
           into: web
-          cleanupExisting: false
+          cleanupExisting: true
 
       - name: Echo the greeting's time
         run: echo 'The time was ${{ steps.hello.outputs.time }}.'
