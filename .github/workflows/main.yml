@@ -4,6 +4,46 @@ on: [push]
 
 jobs:
   build:
+    name: Build App
+    runs-on: [ubuntu-latest]
+    steps: 
+      - name: Import commit files
+        uses: actions/checkout@master
+      - name: Install Dependencies
+        run: yarn install
+      - name: Build
+        run: yarn build
+      - name: Upload bundle
+        uses: actions/upload-artifact@master
+        with:
+          name: dist # Upload artifact with name `dist`
+          path: actions # Upload content of `dist` folder 
+  deploy:
+    name: Deploy App
+    runs-on: [ubuntu-latest]
+    needs: [build]
+    steps:
+      - name: Download bundle
+        uses: actions/download-artifact@master
+        with:
+          name: dist # Download artifact named `dist` (matches build step: Upload bundle)
+#          path: dist # Optional, downloads to current working directory if not specified
+      - name: Debug
+        run: ls
+      - name: Debug
+        run: ls dist
+      - name: Upload to FTP        
+        uses: isthatcentered/dist-to-ftp@master
+        with:
+          user: ${{ secrets.FTP_USER }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          host: ${{ secrets.FTP_HOST }}
+          path: actions
+          into: web
+          cleanupExisting: true
+
+
+  try_stuff:
     name: Greeting
 
     runs-on: ubuntu-latest
