@@ -61,7 +61,7 @@ jobs:
 
       - name: Deploy to ftp
 
-        uses: isthatcentered/deploy-to-ftp@master
+        uses: isthatcentered/dist-to-ftp@master
         with:
           user: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASSWORD }}
